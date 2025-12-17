@@ -5,7 +5,7 @@
 class SocketCANInterface : public CANInterface {
 public:
     explicit SocketCANInterface(const std::string &interface_name);
-    ~SocketCANInterface();
+    ~SocketCANInterface() override;
 
     bool recive(can_frame &frame) override;
 private:

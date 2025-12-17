@@ -1,5 +1,6 @@
 add_library(can_interface
     src/SocketCANInterface.cpp
+    src/CANInterface.cpp
 )
 
 target_include_directories(can_interface

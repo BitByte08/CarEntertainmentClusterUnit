@@ -27,3 +27,12 @@ SocketCANInterface::SocketCANInterface(const std::string &interface_name) {
         throw std::runtime_error("Failed to bind CAN socket to interface " + interface_name);
     }
 }
+SocketCANInterface::~SocketCANInterface() {
+    if (socket_fd_ >= 0) {
+        close(socket_fd_);
+    }
+}
+bool SocketCANInterface::recive(can_frame &frame) {
+    ssize_t nbytes = read(socket_fd_, &frame, sizeof(struct can_frame));
+    return nbytes == sizeof(struct can_frame);
+}

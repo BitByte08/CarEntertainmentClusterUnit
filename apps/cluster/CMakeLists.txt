@@ -10,7 +10,7 @@ add_executable(cluster
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 qt_standard_project_setup()
 
-target_link_libraries(cluster_ui
+target_link_libraries(cluster
     PRIVATE
         Qt6::Widgets
         can_interface

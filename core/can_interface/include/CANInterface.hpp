@@ -13,7 +13,8 @@ struct can_frame;
 
 class CANInterface {
 public:
-    virtual ~CANInterface() = default;
+    CANInterface() = default;
+    virtual ~CANInterface();
     virtual bool recive(can_frame &frame) = 0;
 };
 
