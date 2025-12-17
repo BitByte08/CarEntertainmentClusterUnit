@@ -1,1 +1,1 @@
-add_subdirectory(CANInterface)
+add_subdirectory(can_interface)
