@@ -1,21 +1,18 @@
 #ifndef CORE_CANINTERFACE_H
 #define CORE_CANINTERFACE_H
 
-#include <linux/can.h>
-#include <linux/can/raw.h>
-#include <sys/socket.h>
-#include <net/if.h>
-#include <cstring>
-#include <stdexcept>
-#include <string>
+#include <QObject>
 
 struct can_frame;
 
-class CANInterface {
+class CANInterface : public QObject {
 public:
-    CANInterface() = default;
+    explicit CANInterface(QObject *parent = nullptr) : QObject(parent) {};
     virtual ~CANInterface();
-    virtual bool recive(can_frame &frame) = 0;
+    virtual void start() = 0;
+    virtual void stop() = 0;
+signals:
+    void frameReceived(const can_frame &frame);
 };
 
 #endif // CORE_CANINTERFACE_H

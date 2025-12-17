@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <net/if.h>
 #include <stdexcept>
+#include <cstring>
 
 SocketCANInterface::SocketCANInterface(const std::string &interface_name) {
     socket_fd_ = socket(PF_CAN, SOCK_RAW, CAN_RAW);
@@ -32,7 +33,15 @@ SocketCANInterface::~SocketCANInterface() {
         close(socket_fd_);
     }
 }
-bool SocketCANInterface::recive(can_frame &frame) {
-    ssize_t nbytes = read(socket_fd_, &frame, sizeof(struct can_frame));
-    return nbytes == sizeof(struct can_frame);
+void SocketCANInterface::start() {
+    running_ = true;
+    while(running_) {
+        can_frame frame{};
+        int ret = read(socket_fd_, &frame, sizeof(frame));
+        if (ret < 0) throw std::runtime_error("Failed to read CAN frame");
+        else if (ret == sizeof(frame)) emit frameReceived(frame);
+    }
+}
+void SocketCANInterface::stop() {
+    running_ = false;
 }

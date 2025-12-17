@@ -3,6 +3,13 @@ add_library(can_interface
     src/CANInterface.cpp
 )
 
+find_package(Qt6 REQUIRED COMPONENTS Core)
+
+target_link_libraries(can_interface
+    PRIVATE
+        Qt6::Core
+)
+
 target_include_directories(can_interface
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include

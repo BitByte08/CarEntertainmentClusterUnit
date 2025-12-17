@@ -7,9 +7,11 @@ public:
     explicit SocketCANInterface(const std::string &interface_name);
     ~SocketCANInterface() override;
 
-    bool recive(can_frame &frame) override;
+    void start() override;
+    void stop() override;
 private:
     int socket_fd_{-1};
+    bool running_{false};
 };
 
 #endif // CORE_SOCKETCANINTERFACE_CPP
