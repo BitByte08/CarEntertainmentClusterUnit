@@ -4,14 +4,23 @@
 #include <QMainWindow>
 #include <memory>
 
-#include "CANInterface.hpp"
+namespace Ui {
+class MainWindow;
+}
+
+class ClusterModel;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow() override = default;
+    ~MainWindow() override;
+
 private:
-    std::unique_ptr<CANInterface> can_interface_;
+    void setupGauges();
+    void connectSignals();
+
+    Ui::MainWindow *ui;
+    ClusterModel *cluster_model_;
 };
 #endif // CLUSTER_MAINWINDOW_HPP
