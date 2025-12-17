@@ -3,6 +3,7 @@
 #include "CANInterface.hpp"
 
 class SocketCANInterface : public CANInterface {
+    Q_OBJECT
 public:
     explicit SocketCANInterface(const std::string &interface_name);
     ~SocketCANInterface() override;

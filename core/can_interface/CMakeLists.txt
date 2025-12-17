@@ -1,4 +1,8 @@
-add_library(can_interface
+set(CMAKE_AUTOMOC ON)
+
+add_library(can_interface SHARED
+    include/CANInterface.hpp
+    include/SocketCANInterface.hpp
     src/SocketCANInterface.cpp
     src/CANInterface.cpp
 )

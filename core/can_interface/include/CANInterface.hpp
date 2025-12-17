@@ -2,10 +2,13 @@
 #define CORE_CANINTERFACE_H
 
 #include <QObject>
+#include <linux/can.h>
 
-struct can_frame;
+// can_frame을 Qt 메타타입으로 등록
+Q_DECLARE_METATYPE(can_frame)
 
 class CANInterface : public QObject {
+    Q_OBJECT
 public:
     explicit CANInterface(QObject *parent = nullptr) : QObject(parent) {};
     virtual ~CANInterface();
