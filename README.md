@@ -6,7 +6,7 @@ project/
 │   └─ Utils.cpp/h          # 공용 유틸
 │
 ├─ apps/
-│   ├─ Dashboard/           # 계기판 앱
+│   ├─ Cluster/           # 계기판 앱
 │   │   ├─ main.cpp
 │   │   ├─ DashboardUI.qml  # QML UI
 │   │   └─ DashboardController.cpp/h
